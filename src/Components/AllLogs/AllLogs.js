@@ -11,8 +11,8 @@ export default function RecipeList() {
 
       <section>
         <form id="log-search">
-          <div class="form-section">
-            <label for="log-search">Search</label>
+          <div className="form-section">
+            <label htmlFor="log-search">Search</label>
             <input type="text" name="recipe-search" />
             <input type="submit" value="Submit" />
           </div>
