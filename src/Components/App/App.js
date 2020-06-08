@@ -4,22 +4,65 @@ import "./App.css";
 import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import LandingPage from "../LandingPage/LandingPage";
-import AllLogs from "../AllLogs/AllLogs";
+import SchoolLogs from "../SchoolLogs/SchoolLogs";
 import UpdateLog from "../UpdateLog/UpdateLog";
 import AddLog from "../AddLog/AddLog";
+import config from "../../config";
+import ApiContext from "../../ApiContext";
 
 class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <Nav />
-        <Route exact path={"/"} component={LandingPage} />
-        <Route exact path={"/all-logs"} component={AllLogs} />
-        <Route exact path={"/update"} component={UpdateLog} />
-        <Route exact path={"/addLog"} component={AddLog} />
+  state = {
+    schoolLogs: [],
+  };
 
-        <Footer />
-      </div>
+  componentDidMount() {
+    Promise.all([fetch(`${config.API_ENDPOINT}/school-logs`)])
+      .then(([schoolLogsRes]) => {
+        if (!schoolLogsRes.ok)
+          return schoolLogsRes.json().then((e) => Promise.reject(e));
+
+        return Promise.all([schoolLogsRes.json()]);
+      })
+      .then(([schoolLogs]) => {
+        this.setState({ schoolLogs });
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  }
+
+  handleAddSchoolLog = (newschoolLog) => {
+    this.setState({
+      schoolLogs: [...this.state.schoolLogs, newschoolLog],
+    });
+  };
+
+  handleDeleteRecipe = (schoolLogId) => {
+    this.setState({
+      schoolLogs: this.state.schoolLogs.filter(
+        (schoolLog) => schoolLog.id !== parseInt(schoolLogId)
+      ),
+    });
+  };
+  render() {
+    const value = {
+      schoolLogs: this.state.schoolLogs,
+      addSchoolLog: this.handleAddSchoolLog,
+      deleteSchoolLog: this.handleDeleteSchoolLog,
+    };
+
+    return (
+      <ApiContext.Provider value={value}>
+        <div className="App">
+          <Nav />
+          <Route exact path={"/"} component={LandingPage} />
+          <Route exact path={"/school-logs"} component={SchoolLogs} />
+          <Route exact path={"/update"} component={UpdateLog} />
+          <Route exact path={"/addLog"} component={AddLog} />
+
+          <Footer />
+        </div>
+      </ApiContext.Provider>
     );
   }
 }

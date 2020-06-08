@@ -1,8 +1,8 @@
 import React from "react";
-import LogEntry from "../LogEntry/LogEntry";
-import "./AllLogs.css";
+import LogEntryTable from "../LogEntryTable/LogEntryTable";
+import "./SchoolLogs.css";
 
-export default function RecipeList() {
+export default function SchoolLogs() {
   return (
     <div>
       <header role="banner">
@@ -20,7 +20,7 @@ export default function RecipeList() {
       </section>
 
       <section className="recipe-list">
-        <LogEntry />
+        <LogEntryTable />
       </section>
     </div>
   );
