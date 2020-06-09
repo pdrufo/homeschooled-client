@@ -37,18 +37,28 @@ class App extends React.Component {
     });
   };
 
-  handleDeleteRecipe = (schoolLogId) => {
+  handleDeleteSchoolLog = (schoolLogId) => {
     this.setState({
       schoolLogs: this.state.schoolLogs.filter(
         (schoolLog) => schoolLog.id !== parseInt(schoolLogId)
       ),
     });
   };
+
+  handleUpdateSchoolLog = (schoolLogId) => {
+    this.setState({
+      schoolLogs: this.state.schoolLogs.filter(
+        (schoolLog) => schoolLog.id = parseInt(schoolLogId)
+      ),
+    });
+  };
+  
   render() {
     const value = {
       schoolLogs: this.state.schoolLogs,
       addSchoolLog: this.handleAddSchoolLog,
       deleteSchoolLog: this.handleDeleteSchoolLog,
+      updateSchoolLog: this.handleUpdateSchoolLog,
     };
 
     return (

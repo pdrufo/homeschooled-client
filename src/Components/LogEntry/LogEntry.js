@@ -62,7 +62,7 @@ export default class LogEntry extends React.Component {
     console.log(schoolLogs)
     const { id } = this.props.match.params;
     const schoolLog = findSchoolLog(schoolLogs, id);
-    console.log(schoolLog)
+    console.log(id)
     return (
       <tr key={id}>
         <td>{schoolLog.school_date}</td>
