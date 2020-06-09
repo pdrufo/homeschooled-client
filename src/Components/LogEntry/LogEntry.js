@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { findSchoolLog } from "../../school-helpers";
 import ApiContext from "../../ApiContext";
 import config from "../../config";
@@ -38,50 +38,99 @@ export default class LogEntry extends React.Component {
       });
   }
 
-  handleClickDelete = (e) => {
-    e.preventDefault();
-    const { id } = this.props.match.params;
 
-    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then(() => {
-        this.context.deleteSchoolLog(id);
-        this.props.history.push(`/school-logs`);
-      })
-      .catch((error) => {
-        console.error({ error });
-      });
-  };
 
   render() {
     const { schoolLogs = [] } = this.context;
-    console.log(schoolLogs)
     const { id } = this.props.match.params;
     const schoolLog = findSchoolLog(schoolLogs, id);
     console.log(id)
     return (
-      <tr key={id}>
-        <td>{schoolLog.school_date}</td>
-        <td>{schoolLog.student}</td>
-        <td>{schoolLog.english}</td>
-        <td>{schoolLog.math}</td>
-        <td>{schoolLog.specialty}</td>
-        <td>{schoolLog.notes}</td>
-        <td>
-          <Link to="/update">Edit</Link>
-          <button
-            onClick={this.handleClickDelete}
-            className="schoolLog-delete"
-            type="button"
-          >
-            delete
-          </button>
-        </td>
-      </tr>
+        <div>
+        <header>
+          <h1> School Log</h1>
+        </header>
+        <section>
+          <form id="school-log">
+            <div className="form-section">
+              <label htmlFor="school_date">Date</label>
+              <input
+                type="text"
+                name="school_date"
+                required
+                value= {schoolLog.school_date}
+              />
+            </div>
+            <div className="form-section">
+              <label htmlFor="student">Student Name</label>
+              <input
+                type="text"
+                name="student"
+                required
+                value={schoolLog.student}
+               
+              />
+            </div>
+            <div className="form-section">
+              <label htmlFor="english">English</label>
+              <textarea
+                name="english"
+                rows="5"
+                required
+                value={schoolLog.english}
+                
+              ></textarea>
+            </div>
+            <div className="form-section">
+              <label htmlFor="math">Math</label>
+              <textarea
+                name="math"
+                rows="5"
+                required
+                value={schoolLog.math}
+             
+              ></textarea>
+            </div>
+            <div className="form-section">
+              <label htmlFor="specialty">Specialty</label>
+              <select
+                required
+                value={schoolLog.specialty}
+                
+              >
+                <option defaultValue value="Science">
+                  Science
+                </option>
+                <option value="Art">Art</option>
+                <option value="Drama">Drama</option>
+                <option value="Music">Music</option>
+                <option value="Gym">Gym</option>
+              </select>
+            </div>
+            <div className="form-section">
+              <label htmlFor="notes">Notes</label>
+              <textarea
+                name="notes"
+                rows="5"
+                required
+                value={schoolLog.notes}
+                
+              ></textarea>
+            </div>
+            <div className="form-section">
+              <button type="submit">Submit</button>
+              <button type="reset">Reset</button>
+              <button
+                type="button"
+                onClick={this.handleClickCancel}
+                className="cancel-button"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
     );
   }
 }

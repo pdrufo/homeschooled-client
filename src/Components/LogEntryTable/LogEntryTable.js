@@ -19,11 +19,10 @@ export default class LogEntryTable extends React.Component {
 
   handleClickDelete = (e) => {
     e.preventDefault();
-    
+
     const { id } = this.props.match.params;
-    
-    
-console.log(id)
+
+    console.log(id);
     fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
       method: "DELETE",
       headers: {
@@ -56,10 +55,8 @@ console.log(id)
         console.error({ error });
       });
   };
-  
 
   render() {
-   
     const schoolLogTable = this.context.schoolLogs.map((schoolLog, id) => (
       <tr key={id}>
         <td>{schoolLog.school_date}</td>
@@ -69,7 +66,7 @@ console.log(id)
         <td>{schoolLog.specialty}</td>
         <td>{schoolLog.notes}</td>
         <td>
-        <button
+          <button
             onClick={this.handleClickUpdate}
             className="schoolLog-update"
             type="button"
@@ -86,20 +83,21 @@ console.log(id)
         </td>
       </tr>
     ));
+
     return (
       <div className="log-entry">
         <table id="schoolLogs">
-        <tbody>
-          <tr>
-            <th>Date</th>
-            <th>Student</th>
-            <th>English</th>
-            <th>Math</th>
-            <th>Specialty</th>
-            <th>Notes</th>
-            <th>Actions</th>
-          </tr>
-          {schoolLogTable}
+          <tbody>
+            <tr>
+              <th>Date</th>
+              <th>Student</th>
+              <th>English</th>
+              <th>Math</th>
+              <th>Specialty</th>
+              <th>Notes</th>
+              <th>Actions</th>
+            </tr>
+            {schoolLogTable}
           </tbody>
         </table>
       </div>

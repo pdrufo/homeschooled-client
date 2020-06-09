@@ -6,9 +6,11 @@ import Nav from "../Nav/Nav";
 import LandingPage from "../LandingPage/LandingPage";
 import SchoolLogs from "../SchoolLogs/SchoolLogs";
 import UpdateLog from "../UpdateLog/UpdateLog";
+import LogEntry from "../LogEntry/LogEntry";
 import AddLog from "../AddLog/AddLog";
 import config from "../../config";
 import ApiContext from "../../ApiContext";
+
 
 class App extends React.Component {
   state = {
@@ -67,7 +69,12 @@ class App extends React.Component {
           <Nav />
           <Route exact path={"/"} component={LandingPage} />
           <Route exact path={"/school-logs"} component={SchoolLogs} />
-          <Route exact path={"/school-logs/:id"} component={UpdateLog} />
+          <Route exact path={"/school-logs/:id"} component={LogEntry} />
+          <Route
+            exact
+            path={"/school-logs/:id/update"}
+            component={UpdateLog}
+          />
           <Route exact path={"/addLog"} component={AddLog} />
 
           <Footer />

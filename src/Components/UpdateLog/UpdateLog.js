@@ -82,7 +82,7 @@ export default class UpdateLog extends React.Component {
       specialty,
       notes,
     };
-    fetch(`${config.API_ENDPOINT}/api/zebralogs/${id}`, {
+    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
       method: "PATCH",
       body: JSON.stringify(newSchoolLog),
       headers: {
