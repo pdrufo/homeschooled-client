@@ -11,7 +11,7 @@ export default class AddLog extends React.Component {
   };
 
   static contextType = ApiContext;
-  
+
   handleSubmit = (e) => {
     e.preventDefault();
     const newSchoolLog = {
@@ -62,7 +62,7 @@ export default class AddLog extends React.Component {
           <h1>Add Log</h1>
         </header>
         <section>
-          <form id="add-log">
+          <form id="add-log" onSubmit={this.handleSubmit}>
             <div className="form-section">
               <label htmlFor="school_date">Date</label>
               <input
@@ -86,7 +86,7 @@ export default class AddLog extends React.Component {
             </div>
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>
-              <select required>
+              <select name="specialty" required>
                 <option defaultValue value="Science">
                   Science
                 </option>

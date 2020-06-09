@@ -48,11 +48,11 @@ class App extends React.Component {
   handleUpdateSchoolLog = (schoolLogId) => {
     this.setState({
       schoolLogs: this.state.schoolLogs.filter(
-        (schoolLog) => schoolLog.id = parseInt(schoolLogId)
+        (schoolLog) => (schoolLog.id = parseInt(schoolLogId))
       ),
     });
   };
-  
+
   render() {
     const value = {
       schoolLogs: this.state.schoolLogs,
@@ -67,7 +67,7 @@ class App extends React.Component {
           <Nav />
           <Route exact path={"/"} component={LandingPage} />
           <Route exact path={"/school-logs"} component={SchoolLogs} />
-          <Route exact path={"/update"} component={UpdateLog} />
+          <Route exact path={"/school-logs/:id"} component={UpdateLog} />
           <Route exact path={"/addLog"} component={AddLog} />
 
           <Footer />
