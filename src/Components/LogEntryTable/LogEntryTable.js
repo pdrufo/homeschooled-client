@@ -1,7 +1,6 @@
 import React from "react";
 import "./LogEntryTable.css";
 import ApiContext from "../../ApiContext";
-import { Link } from "react-router-dom";
 import config from "../../config";
 
 export default class LogEntryTable extends React.Component {
@@ -20,7 +19,7 @@ export default class LogEntryTable extends React.Component {
   handleClickDelete = (e) => {
     e.preventDefault();
     const { id } = this.props.match.params;
-
+console.log(this.props.match.params)
     fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
       method: "DELETE",
       headers: {

@@ -82,7 +82,7 @@ export default class AddLog extends React.Component {
             </div>
             <div className="form-section">
               <label htmlFor="math">Math</label>
-              <textarea name="english" rows="5" required></textarea>
+              <textarea name="math" rows="5" required></textarea>
             </div>
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>

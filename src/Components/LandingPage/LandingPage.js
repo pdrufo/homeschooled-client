@@ -22,7 +22,7 @@ export default function LandingPage() {
         </section>
 
         <section>
-          <Link to="all-logs">
+          <Link to="school-logs">
             <button type="button">Get to work</button>
           </Link>
         </section>
