@@ -11,7 +11,7 @@ export default class AddLog extends React.Component {
   };
 
   static contextType = ApiContext;
-  /**get the values a user puts into the form and post the new recipe to the api */
+  
   handleSubmit = (e) => {
     e.preventDefault();
     const newSchoolLog = {
@@ -47,7 +47,7 @@ export default class AddLog extends React.Component {
           return res.json();
         })
         .then((schoolLog) => {
-          this.context.addSchoolLog(schoolLog);
+          this.context.addSchoolLog(newSchoolLog);
           this.props.history.push(`/school-logs`);
         })
         .catch((error) => {
