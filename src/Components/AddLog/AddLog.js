@@ -47,7 +47,7 @@ export default class AddLog extends React.Component {
           return res.json();
         })
         .then((schoolLog) => {
-          this.context.addSchoolLog(newSchoolLog);
+          this.context.addSchoolLog(schoolLog);
           this.props.history.push(`/school-logs`);
         })
         .catch((error) => {
