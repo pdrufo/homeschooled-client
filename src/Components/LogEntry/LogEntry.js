@@ -45,6 +45,7 @@ export default class LogEntry extends React.Component {
     const { id } = this.props.match.params;
     const schoolLog = findSchoolLog(schoolLogs, id);
     console.log(id)
+    console.log(schoolLog)
     return (
         <div>
         <header>
@@ -120,13 +121,7 @@ export default class LogEntry extends React.Component {
             <div className="form-section">
               <button type="submit">Submit</button>
               <button type="reset">Reset</button>
-              <button
-                type="button"
-                onClick={this.handleClickCancel}
-                className="cancel-button"
-              >
-                Cancel
-              </button>
+              
             </div>
           </form>
         </section>

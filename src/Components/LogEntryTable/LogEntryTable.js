@@ -17,27 +17,8 @@ export default class LogEntryTable extends React.Component {
 
   static contextType = ApiContext;
 
-  handleClickDelete = (e) => {
-    e.preventDefault();
 
-    const { id } = this.props.match.params;
-
-    console.log(id);
-    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then(() => {
-        this.context.deleteSchoolLog(id);
-        this.props.history.push(`/school-logs`);
-      })
-      .catch((error) => {
-        console.error({ error });
-      });
-  };
-  handleClickUpdate = (e) => {
+  handleClickDetails = (e) => {
     e.preventDefault();
     const { id } = this.props.match.params;
 
@@ -55,7 +36,7 @@ export default class LogEntryTable extends React.Component {
         console.error({ error });
       });
   };
-
+  
   render() {
     const schoolLogTable = this.context.schoolLogs.map((schoolLog, id) => (
       <tr key={id}>
@@ -66,19 +47,12 @@ export default class LogEntryTable extends React.Component {
         <td>{schoolLog.specialty}</td>
         <td>{schoolLog.notes}</td>
         <td>
-          <button
-            onClick={this.handleClickUpdate}
-            className="schoolLog-update"
+        <button
+            onClick={this.handleClickDetails}
+            className="schoolLog-details"
             type="button"
           >
-            Edit
-          </button>
-          <button
-            onClick={this.handleClickDelete}
-            className="schoolLog-delete"
-            type="button"
-          >
-            delete
+            details
           </button>
         </td>
       </tr>
