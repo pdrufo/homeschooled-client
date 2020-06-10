@@ -1,6 +1,7 @@
 import React from "react";
 import LogEntryTable from "../LogEntryTable/LogEntryTable";
 import "./SchoolLogs.css";
+import SeachBox from '../SearchBox/SearchBox'
 
 export default function SchoolLogs() {
   return (
@@ -10,13 +11,14 @@ export default function SchoolLogs() {
       </header>
 
       <section>
-        <form id="log-search">
+        <SeachBox />
+        {/* <form id="log-search">
           <div className="form-section">
             <label htmlFor="log-search">Search</label>
             <input type="text" name="recipe-search" />
             <input type="submit" value="Submit" />
           </div>
-        </form>
+        </form> */}
       </section>
 
       <section className="recipe-list">

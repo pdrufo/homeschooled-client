@@ -121,7 +121,7 @@ export default class UpdateLog extends React.Component {
           <h1>Edit Log</h1>
         </header>
         <section>
-          <form id="add-log">
+          <form id="add-log" onSubmit={this.handleSubmit}>
             <div className="form-section">
               <label htmlFor="school_date">Date</label>
               <input

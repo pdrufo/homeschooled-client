@@ -2,7 +2,7 @@ import React from "react";
 import "./LogEntryTable.css";
 import ApiContext from "../../ApiContext";
 import config from "../../config";
-import { findSchoolLog } from "../../school-helpers";
+
 
 export default class LogEntryTable extends React.Component {
   state = {
@@ -19,7 +19,7 @@ export default class LogEntryTable extends React.Component {
 
 
   handleClickDetails = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const { id } = this.props.match.params;
 
     fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
@@ -36,7 +36,7 @@ export default class LogEntryTable extends React.Component {
         console.error({ error });
       });
   };
-  
+
   render() {
     const schoolLogTable = this.context.schoolLogs.map((schoolLog, id) => (
       <tr key={id}>
@@ -48,7 +48,7 @@ export default class LogEntryTable extends React.Component {
         <td>{schoolLog.notes}</td>
         <td>
         <button
-            onClick={this.handleClickDetails}
+            onClick={()=>this.handleClickDetails(schoolLog.id)}
             className="schoolLog-details"
             type="button"
           >

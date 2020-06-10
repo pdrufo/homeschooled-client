@@ -1,5 +1,5 @@
 import React from "react";
-
+import './LogEntry.css'
 import { findSchoolLog } from "../../school-helpers";
 import ApiContext from "../../ApiContext";
 import config from "../../config";
@@ -14,6 +14,7 @@ export default class LogEntry extends React.Component {
     match: {
       params: {},
       onDeleteSchoolLog: () => {},
+      onUpdateSchoolLog: () => {},
     },
   };
 
@@ -37,13 +38,50 @@ export default class LogEntry extends React.Component {
         console.error({ error });
       });
   }
+  handleClickDelete = (e) => {
+    e.preventDefault();
 
+    const { id } = this.props.match.params;
+
+    console.log(id);
+    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then(() => {
+        this.context.deleteSchoolLog(id);
+        this.props.history.push(`/school-logs`);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
+  handleClickUpdate = (e) => {
+    e.preventDefault();
+    const { id } = this.props.match.params;
+
+    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then(() => {
+        this.context.updateSchoolLog(id);
+        this.props.history.push(`/school-logs/${id}/update`);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
 
 
   render() {
     const { schoolLogs = [] } = this.context;
     const { id } = this.props.match.params;
-    const schoolLog = findSchoolLog(schoolLogs, id);
+    const schoolLog = findSchoolLog(schoolLogs, id) || { student: `Loading...` };
     console.log(id)
     console.log(schoolLog)
     return (
@@ -119,8 +157,20 @@ export default class LogEntry extends React.Component {
               ></textarea>
             </div>
             <div className="form-section">
-              <button type="submit">Submit</button>
-              <button type="reset">Reset</button>
+            <button
+            onClick={this.handleClickUpdate}
+            className="schoolLog-update"
+            type="button"
+          >
+            Edit
+          </button>
+          <button
+            onClick={this.handleClickDelete}
+            className="schoolLog-delete"
+            type="button"
+          >
+            delete
+          </button>
               
             </div>
           </form>
