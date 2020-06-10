@@ -19,7 +19,7 @@ export default class LogEntryTable extends React.Component {
 
 
   handleClickDetails = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const { id } = this.props.match.params;
 
     fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
@@ -48,7 +48,7 @@ export default class LogEntryTable extends React.Component {
         <td>{schoolLog.notes}</td>
         <td>
         <button
-            onClick={()=>this.handleClickDetails(schoolLog.id)}
+            onClick={this.handleClickDetails}
             className="schoolLog-details"
             type="button"
           >
