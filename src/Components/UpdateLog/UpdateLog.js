@@ -96,7 +96,7 @@ export default class UpdateLog extends React.Component {
       })
       .then(() => {
         this.context.updateSchoolLog(newSchoolLog);
-        this.props.history.push("/");
+        this.props.history.push("/school-logs");
       })
       .catch((error) => {
         console.error(error);
@@ -190,7 +190,6 @@ export default class UpdateLog extends React.Component {
             </div>
             <div className="form-section">
               <button type="submit">Submit</button>
-              <button type="reset">Reset</button>
               <button
                 type="button"
                 onClick={this.handleClickCancel}

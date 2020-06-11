@@ -1,18 +1,18 @@
 form {
-    text-align: left;
-  }
-  
-  input, textarea {
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  
-  label {
-    display: block;
-  }
-  
-  .form-section {
-    margin-bottom: 30px;
-    text-align: center;
-  }
+  text-align: left;
+}
+
+input,
+textarea {
+  width: 100%;
+  max-width: 500px;
+}
+
+label {
+  display: block;
+}
+
+.form-section {
+  margin-bottom: 30px;
+  text-align: center;
+}

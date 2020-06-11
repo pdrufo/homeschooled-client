@@ -1,8 +1,7 @@
 import React from "react";
 import "./LogEntryTable.css";
 import ApiContext from "../../ApiContext";
-import config from "../../config";
-
+import { Link } from "react-router-dom";
 
 export default class LogEntryTable extends React.Component {
   state = {
@@ -17,26 +16,26 @@ export default class LogEntryTable extends React.Component {
 
   static contextType = ApiContext;
 
+  // handleClickDetails = (e, id) => {
+  //   e.preventDefault();
 
-  handleClickDetails = (e) => {
-    e.preventDefault();
-    const { id } = this.props.match.params;
+  //   fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //   })
+  //     .then(() => {
 
-    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then(() => {
-        this.context.updateSchoolLog(id);
-        this.props.history.push(`/school-logs/${id}`);
-      })
-      .catch((error) => {
-        console.error({ error });
-      });
+  //       this.props.history.push(`/school-logs/${id}`);
+  //     })
+  //     .catch((error) => {
+  //       console.error({ error });
+  //     });
+  // };
+  handleClickDetails = (id) => {
+    this.props.history.push(`/school-logs/${id}`);
   };
-
   render() {
     const schoolLogTable = this.context.schoolLogs.map((schoolLog, id) => (
       <tr key={id}>
@@ -47,17 +46,18 @@ export default class LogEntryTable extends React.Component {
         <td>{schoolLog.specialty}</td>
         <td>{schoolLog.notes}</td>
         <td>
-        <button
-            onClick={this.handleClickDetails}
-            className="schoolLog-details"
-            type="button"
-          >
-            details
-          </button>
+          {/* <Link to={`/school-logs/${schoolLog.id}`}> */}
+            <button
+              onClick={() => this.handleClickDetails(schoolLog.id)}
+              className="schoolLog-details"
+              type="button"
+            >
+              details
+            </button>
+          {/* </Link> */}
         </td>
       </tr>
     ));
-
     return (
       <div className="log-entry">
         <table id="schoolLogs">

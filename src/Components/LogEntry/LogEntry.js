@@ -1,9 +1,8 @@
 import React from "react";
-import './LogEntry.css'
+import "./LogEntry.css";
 import { findSchoolLog } from "../../school-helpers";
 import ApiContext from "../../ApiContext";
 import config from "../../config";
-
 
 export default class LogEntry extends React.Component {
   state = {
@@ -77,15 +76,14 @@ export default class LogEntry extends React.Component {
       });
   };
 
-
   render() {
     const { schoolLogs = [] } = this.context;
     const { id } = this.props.match.params;
-    const schoolLog = findSchoolLog(schoolLogs, id) || { student: `Loading...` };
-    console.log(id)
-    console.log(schoolLog)
+    const schoolLog = findSchoolLog(schoolLogs, id) || {
+      student: `Loading...`,
+    };
     return (
-        <div>
+      <div>
         <header>
           <h1> School Log</h1>
         </header>
@@ -97,7 +95,7 @@ export default class LogEntry extends React.Component {
                 type="text"
                 name="school_date"
                 required
-                value= {schoolLog.school_date}
+                defaultValue={schoolLog.school_date}
               />
             </div>
             <div className="form-section">
@@ -106,8 +104,7 @@ export default class LogEntry extends React.Component {
                 type="text"
                 name="student"
                 required
-                value={schoolLog.student}
-               
+                defaultValue={schoolLog.student}
               />
             </div>
             <div className="form-section">
@@ -116,8 +113,7 @@ export default class LogEntry extends React.Component {
                 name="english"
                 rows="5"
                 required
-                value={schoolLog.english}
-                
+                defaultValue={schoolLog.english}
               ></textarea>
             </div>
             <div className="form-section">
@@ -126,17 +122,12 @@ export default class LogEntry extends React.Component {
                 name="math"
                 rows="5"
                 required
-                value={schoolLog.math}
-             
+                defaultValue={schoolLog.math}
               ></textarea>
             </div>
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>
-              <select
-                required
-                value={schoolLog.specialty}
-                
-              >
+              <select required defaultValue={schoolLog.specialty}>
                 <option defaultValue value="Science">
                   Science
                 </option>
@@ -152,26 +143,24 @@ export default class LogEntry extends React.Component {
                 name="notes"
                 rows="5"
                 required
-                value={schoolLog.notes}
-                
+                defaultValue={schoolLog.notes}
               ></textarea>
             </div>
             <div className="form-section">
-            <button
-            onClick={this.handleClickUpdate}
-            className="schoolLog-update"
-            type="button"
-          >
-            Edit
-          </button>
-          <button
-            onClick={this.handleClickDelete}
-            className="schoolLog-delete"
-            type="button"
-          >
-            delete
-          </button>
-              
+              <button
+                onClick={this.handleClickUpdate}
+                className="schoolLog-update"
+                type="button"
+              >
+                Edit
+              </button>
+              <button
+                onClick={this.handleClickDelete}
+                className="schoolLog-delete"
+                type="button"
+              >
+                delete
+              </button>
             </div>
           </form>
         </section>

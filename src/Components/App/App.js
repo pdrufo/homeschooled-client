@@ -11,7 +11,6 @@ import AddLog from "../AddLog/AddLog";
 import config from "../../config";
 import ApiContext from "../../ApiContext";
 
-
 class App extends React.Component {
   state = {
     schoolLogs: [],
@@ -47,11 +46,12 @@ class App extends React.Component {
     });
   };
 
-  handleUpdateSchoolLog = (schoolLogId) => {
+  handleUpdateSchoolLog = (updateSchoolLog) => {
     this.setState({
-      schoolLogs: this.state.schoolLogs.filter(
-        (schoolLog) => (schoolLog.id = parseInt(schoolLogId))
-      ),
+      // schoolLogs: this.state.schoolLogs.filter(
+      //   (schoolLog) => (schoolLog.id = parseInt(schoolLogId)), ...this.state.schoolLogs
+      // ),
+      schoolLogs: [...this.state.schoolLogs, updateSchoolLog]
     });
   };
 
@@ -70,11 +70,7 @@ class App extends React.Component {
           <Route exact path={"/"} component={LandingPage} />
           <Route exact path={"/school-logs"} component={SchoolLogs} />
           <Route exact path={"/school-logs/:id"} component={LogEntry} />
-          <Route
-            exact
-            path={"/school-logs/:id/update"}
-            component={UpdateLog}
-          />
+          <Route exact path={"/school-logs/:id/update"} component={UpdateLog} />
           <Route exact path={"/addLog"} component={AddLog} />
 
           <Footer />

@@ -1,35 +1,36 @@
 import React from "react";
-import config from "../../config";
-import ApiContext from '../../ApiContext'
 
+import ApiContext from "../../ApiContext";
+import LogEntryTable from "../LogEntryTable/LogEntryTable";
 
 export default class SearchBox extends React.Component {
-state = {
-    dataSource: [],
-
+  state = {
+    search: "",
+    filteredLogs: [],
   };
 
   static contextType = ApiContext;
 
-  onChange = e => {
-    const { onChange } = this.context;
-    onChange(e.target.value);
-}
-  fetchData(text) {
-    this.setState({ text });
-
-    fetch(`${config.API_ENDPOINT}/school-logs`)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({
-          dataSource: responseJson.Search,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  updateSearch(event) {
+    this.setState({ search: event.target.value.substr(0, 20) });
   }
+
+  handleClick = () => {
+    this.setState({ search: "" });
+  };
+
   render() {
+    let term = this.state.search.toLowerCase().trim();
+    let filteredLogs = [];
+    if (term.length !== 0) {
+      filteredLogs = this.context.schoolLogs.filter((schoolLog) => {
+        return (
+          schoolLog.student.toLowerCase().indexOf(term) !== -1 ||
+          schoolLog.english.toLowerCase().indexOf(term) !== -1 ||
+          schoolLog.math.toLowerCase().indexOf(term) !== -1
+        );
+      });
+    }
     return (
       <section>
         <form id="log-search">
@@ -37,11 +38,16 @@ state = {
             <label htmlFor="log-search">Search</label>
             <input
               type="text"
-              name="schoolLog-search onChange={this.onChange}"
+              name="schoolLog-search onChange={this.updateSearch.bind(this)}"
             />
             <input type="submit" value="Submit" />
           </div>
         </form>
+        <div className="results" onClick={this.handleClick}>
+          {filteredLogs.map((schoolLog) => {
+            return <LogEntryTable key={schoolLog.id} id={schoolLog.id} />;
+          })}
+        </div>
       </section>
     );
   }

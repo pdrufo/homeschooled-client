@@ -3,7 +3,7 @@ import LogEntryTable from "../LogEntryTable/LogEntryTable";
 import "./SchoolLogs.css";
 import SeachBox from '../SearchBox/SearchBox'
 
-export default function SchoolLogs() {
+export default function SchoolLogs(props) {
   return (
     <div>
       <header role="banner">
@@ -21,8 +21,8 @@ export default function SchoolLogs() {
         </form> */}
       </section>
 
-      <section className="recipe-list">
-        <LogEntryTable />
+      <section className="schoolLog-list">
+        <LogEntryTable history={props.history} />
       </section>
     </div>
   );
