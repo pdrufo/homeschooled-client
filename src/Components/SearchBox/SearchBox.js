@@ -33,7 +33,7 @@ export default class SearchBox extends React.Component {
     }
     return (
       <section>
-        <form id="log-search">
+        <form id="log-search" onClick={this.handleClick}>
           <div className="form-section">
             <label htmlFor="log-search">Search</label>
             <input
@@ -43,7 +43,7 @@ export default class SearchBox extends React.Component {
             <input type="submit" value="Submit" />
           </div>
         </form>
-        <div className="results" onClick={this.handleClick}>
+        <div className="results" >
           {filteredLogs.map((schoolLog) => {
             return <LogEntryTable key={schoolLog.id} id={schoolLog.id} />;
           })}
@@ -51,4 +51,32 @@ export default class SearchBox extends React.Component {
       </section>
     );
   }
+// static contextType = ApiContext;
+// onChange = e => {
+//     const { onChange } = this.context;
+//     onChange(e.target.value);
+// }
+// render(){
+//     const { filteredLogs } = this.context;
+//     console.log(filteredLogs)
+// return (
+//           <section>
+//             <form id="log-search" onClick={this.handleClick}>
+//               <div className="form-section">
+//                 <label htmlFor="log-search">Search</label>
+//                 <input
+//                   type="text"
+//                   name="schoolLog-search onChange={this.onChange}"
+//                 />
+//                 <input type="submit" value="Submit" />
+//               </div>
+//             </form>
+//             <div className="results" >
+//               {filteredLogs.map((filteredLog) => {
+//                 return <LogEntryTable key={filteredLog.id} {...filteredLog} />;
+//               })}
+//             </div>
+//           </section>
+//         );
+// }
 }

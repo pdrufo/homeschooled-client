@@ -1,7 +1,7 @@
 import React from "react";
 import LogEntryTable from "../LogEntryTable/LogEntryTable";
 import "./SchoolLogs.css";
-import SeachBox from '../SearchBox/SearchBox'
+import SearchBox from '../SearchBox/SearchBox'
 
 export default function SchoolLogs(props) {
   return (
@@ -11,7 +11,7 @@ export default function SchoolLogs(props) {
       </header>
 
       <section>
-        <SeachBox />
+        <SearchBox />
         {/* <form id="log-search">
           <div className="form-section">
             <label htmlFor="log-search">Search</label>

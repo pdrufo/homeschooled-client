@@ -14,6 +14,12 @@ export default class UpdateLog extends React.Component {
     notes: "",
   };
 
+  static defaultProps = {
+    match: {
+      params: {},
+    },
+  };
+
   static contextType = ApiContext;
 
   componentDidMount() {

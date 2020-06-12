@@ -48,10 +48,11 @@ class App extends React.Component {
 
   handleUpdateSchoolLog = (updateSchoolLog) => {
     this.setState({
-      // schoolLogs: this.state.schoolLogs.filter(
-      //   (schoolLog) => (schoolLog.id = parseInt(schoolLogId)), ...this.state.schoolLogs
-      // ),
-      schoolLogs: [...this.state.schoolLogs, updateSchoolLog]
+      schoolLogs: this.state.schoolLogs.map((schoolLog) =>
+        schoolLog.id !== parseInt(updateSchoolLog.id)
+          ? schoolLog
+          : updateSchoolLog
+      ),
     });
   };
 
