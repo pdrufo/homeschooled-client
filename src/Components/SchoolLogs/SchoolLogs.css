@@ -1,0 +1,33 @@
+.schoolLogs-container {
+  background-image: url(../../Images/31358.jpg);
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  padding: 40px;
+  font-family: "Raleway", sans-serif;
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+
+  h1 {
+    padding: 60px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+  h1 {
+    padding: 50px;
+  }
+  
+  .schoolLog-list {
+    width: 70%;
+    margin: auto auto;
+    padding: 30px;
+    font-size: 16px;
+  }
+}

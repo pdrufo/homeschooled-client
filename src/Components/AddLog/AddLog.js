@@ -57,16 +57,18 @@ export default class AddLog extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="addSchoolLog-container">
         <header>
-          <h1>Add Log</h1>
+          <h1>Add New School Log</h1>
         </header>
         <section>
           <form id="add-log" onSubmit={this.handleSubmit}>
             <div className="form-section">
               <label htmlFor="school_date">Date</label>
+
               <input
-                type="text"
+                aria-label="input for label"
+                type="date"
                 name="school_date"
                 placeholder="5/7/2020"
                 required
@@ -74,19 +76,35 @@ export default class AddLog extends React.Component {
             </div>
             <div className="form-section">
               <label htmlFor="student">Student Name</label>
-              <input type="text" name="student" required />
+              <input
+                type="text"
+                name="student"
+                aria-label="input for label"
+                required
+              />
             </div>
             <div className="form-section">
               <label htmlFor="english">English</label>
-              <textarea name="english" rows="5" required></textarea>
+              <textarea
+                name="english"
+                rows="5"
+                aria-label="input for label"
+                required
+              ></textarea>
             </div>
             <div className="form-section">
               <label htmlFor="math">Math</label>
-              <textarea name="math" rows="5" required></textarea>
+              <textarea
+                name="math"
+                rows="5"
+                aria-label="input for label"
+                required
+              ></textarea>
             </div>
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>
-              <select name="specialty" required>
+              
+              <select name="specialty" className="custom-select" required>
                 <option defaultValue value="Science">
                   Science
                 </option>
@@ -95,14 +113,22 @@ export default class AddLog extends React.Component {
                 <option value="Music">Music</option>
                 <option value="Gym">Gym</option>
               </select>
+              
             </div>
             <div className="form-section">
               <label htmlFor="notes">Notes</label>
-              <textarea name="notes" rows="5" required></textarea>
+              <textarea
+                name="notes"
+                rows="5"
+                aria-label="input for label"
+                required
+              ></textarea>
             </div>
             <div className="form-section">
               <button type="submit">Submit</button>
-              <button type="reset">Reset</button>
+              <button type="reset" className="reset-button">
+                Reset
+              </button>
             </div>
           </form>
         </section>

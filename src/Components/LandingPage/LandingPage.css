@@ -1,0 +1,129 @@
+.container {
+  background-image: url(../../Images/31358.jpg);
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.hero {
+  margin-top: 0px;
+  padding: 10px;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.hero h1 {
+  margin-top: 60px;
+  font-size: 35px;
+  color: white;
+  font-family: "Shadows Into Light Two", cursive;
+}
+
+.hero img {
+  width: 30%;
+}
+
+.school-button {
+  margin-top: -10px;
+}
+
+.landing-button {
+  padding: 0.2em 1.2em;
+  border-radius: 2em;
+  text-decoration: none;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #970569;
+}
+
+.landing-button:hover {
+  background-color: #28b812;
+}
+
+@media only screen and (min-width: 375px) {
+  .hero {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .hero h1 {
+    margin-top: 80px;
+    font-size: 38px;
+    color: white;
+  }
+
+  .hero img {
+    width: 33%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  .hero {
+    padding: 40px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .hero h1 {
+    font-size: 80px;
+    color: white;
+  }
+
+  .hero img {
+    margin-top: 60px;
+    width: 20%;
+  }
+
+  .school-button {
+    margin-top: 10px;
+  }
+
+  .landing-button {
+    padding: 0.8em 1.2em;
+    border-radius: 2em;
+    text-decoration: none;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #970569;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+  .hero {
+    height: 77vh;
+  }
+
+  .hero h1 {
+    padding: 10px;
+    font-size: 50px;
+  }
+
+  .hero img {
+    margin-top: 10px;
+
+    width: 7%;
+  }
+
+  .hero p {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .school-button {
+    padding: 50px;
+  }
+  
+  .landing-button {
+    padding: 0.8em 1.2em;
+    border-radius: 2em;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #970569;
+  }
+}

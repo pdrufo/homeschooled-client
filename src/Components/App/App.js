@@ -68,6 +68,7 @@ class App extends React.Component {
       <ApiContext.Provider value={value}>
         <div className="App">
           <Nav />
+
           <Route exact path={"/"} component={LandingPage} />
           <Route exact path={"/school-logs"} component={SchoolLogs} />
           <Route exact path={"/school-logs/:id"} component={LogEntry} />

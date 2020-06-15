@@ -4,9 +4,9 @@ import "./SchoolLogs.css";
 
 export default function SchoolLogs(props) {
   return (
-    <div>
+    <div className="schoolLogs-container">
       <header role="banner">
-        <h1>School Log</h1>
+        <h1>School Logs</h1>
       </header>
 
       <section className="schoolLog-list">

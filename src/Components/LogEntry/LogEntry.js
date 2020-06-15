@@ -83,7 +83,7 @@ export default class LogEntry extends React.Component {
       student: `Loading...`,
     };
     return (
-      <div>
+      <div className="addSchoolLog-container">
         <header>
           <h1> School Log</h1>
         </header>
@@ -149,14 +149,14 @@ export default class LogEntry extends React.Component {
             <div className="form-section">
               <button
                 onClick={this.handleClickUpdate}
-                className="schoolLog-update"
+                className="edit-button"
                 type="button"
               >
                 Edit
               </button>
               <button
                 onClick={this.handleClickDelete}
-                className="schoolLog-delete"
+                className="delete-button"
                 type="button"
               >
                 delete

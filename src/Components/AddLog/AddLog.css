@@ -1,18 +1,120 @@
+.addSchoolLog-container {
+  background-image: url(../../Images/31358.jpg);
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  padding: 60px;
+  font-family: "Raleway", sans-serif;
+  font-size: 30px;
+}
+
 form {
   text-align: left;
+  margin-top: -50px;
 }
 
 input,
 textarea {
-  width: 100%;
-  max-width: 500px;
+  width: 75%;
+  background-color: #47b037;
+  display: block;
+  margin: 0 auto;
+  color: white;
 }
 
 label {
   display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .form-section {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-align: center;
+  color: white;
+  /* color: rgb(26, 29, 80); */
+  font-family: "Raleway", sans-serif;
+  font-weight: bolder;
+}
+.specialty-select {
+  color: white;
+  background-color: #47b037;
+  width: 30%;
+}
+
+button {
+  margin-bottom: 50px;
+  padding: 10px;
+  background-color: #970569;
+  border-radius: 5px;
+  color: white;
+}
+
+.reset-button {
+  margin-left: 10px;
+}
+
+::placeholder {
+  color: white;
+  font-size: 12px;
+}
+
+@media only screen and (min-width: 768px) {
+
+  h1 {
+    font-size: 45px;
+    padding: 60px;
+  }
+
+  input,
+  textarea {
+    width: 60%;
+  }
+
+  label {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  ::placeholder {
+    font-size: 14px;
+    vertical-align: top;
+  }
+
+  .specialty-select {
+    width: 25%;
+  }
+
+  button {
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 20px;
+  }
+
+  .reset-button {
+    margin-left: 20px;
+  }
+
+  .form-section {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+  input,
+  textarea {
+    width: 40%;
+  }
+
+  button {
+    padding: 10px;
+  }
+  
+  .specialty-select {
+    width: 45%;
+  }
 }

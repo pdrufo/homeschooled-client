@@ -122,7 +122,7 @@ export default class UpdateLog extends React.Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="addSchoolLog-container">
         <header>
           <h1>Edit Log</h1>
         </header>
@@ -131,7 +131,7 @@ export default class UpdateLog extends React.Component {
             <div className="form-section">
               <label htmlFor="school_date">Date</label>
               <input
-                type="text"
+                type="date"
                 name="school_date"
                 required
                 value={school_date}
@@ -195,7 +195,9 @@ export default class UpdateLog extends React.Component {
               ></textarea>
             </div>
             <div className="form-section">
-              <button type="submit">Submit</button>
+              <button type="submit" className="submit-button">
+                Submit
+              </button>
               <button
                 type="button"
                 onClick={this.handleClickCancel}
