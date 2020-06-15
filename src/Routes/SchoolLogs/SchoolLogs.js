@@ -1,5 +1,5 @@
 import React from "react";
-import LogEntryTable from "../LogEntryTable/LogEntryTable";
+import LogEntryTable from "../../Components/LogEntryTable/LogEntryTable";
 import "./SchoolLogs.css";
 
 export default function SchoolLogs(props) {

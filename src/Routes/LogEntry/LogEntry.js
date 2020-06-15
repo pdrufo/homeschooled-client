@@ -1,22 +1,20 @@
 import React from "react";
-import "./UpdateLog.css";
+import "./LogEntry.css";
+import { findSchoolLog } from "../../school-helpers";
 import ApiContext from "../../ApiContext";
 import config from "../../config";
 
-export default class UpdateLog extends React.Component {
+/**LogEntry will fetch a unique schoolLog and display it's details. The user will have the option to edit or delete the schoolLog */
+export default class LogEntry extends React.Component {
   state = {
-    id: "",
-    school_date: "",
-    student: "",
-    english: "",
-    math: "",
-    specialty: "",
-    notes: "",
+    schoolLogs: [],
   };
 
   static defaultProps = {
     match: {
       params: {},
+      onDeleteSchoolLog: () => {},
+      onUpdateSchoolLog: () => {},
     },
   };
 
@@ -31,111 +29,74 @@ export default class UpdateLog extends React.Component {
       },
     })
       .then((res) => res.json())
-      .then((responseData) => {
+      .then((data) => {
         if (!this.state.schoolLog) {
-          this.setState({
-            id: responseData.id,
-            school_date: responseData.school_date,
-            student: responseData.student,
-            english: responseData.english,
-            math: responseData.math,
-            specialty: responseData.specialty,
-            notes: responseData.notes,
-          });
+          this.setState({ schoolLog: data });
         }
       })
       .catch((error) => {
         console.error({ error });
       });
   }
-
-  handleChangeSchoolDate = (e) => {
-    this.setState({ school_date: e.target.value });
-  };
-  handleChangeStudent = (e) => {
-    this.setState({ student: e.target.value });
-  };
-  handleChangeEnglish = (e) => {
-    this.setState({ english: e.target.value });
-  };
-  handleChangeMath = (e) => {
-    this.setState({ math: e.target.value });
-  };
-  handleChangeSpecialty = (e) => {
-    this.setState({ specialty: e.target.value });
-  };
-  handleChangeNotes = (e) => {
-    this.setState({ notes: e.target.value });
-  };
-
-  handleSubmit = (e) => {
+  handleClickDelete = (e) => {
     e.preventDefault();
+
     const { id } = this.props.match.params;
-    const {
-      school_date,
-      student,
-      english,
-      math,
-      specialty,
-      notes,
-    } = this.state;
-    const newSchoolLog = {
-      id,
-      school_date,
-      student,
-      english,
-      math,
-      specialty,
-      notes,
-    };
+
+    console.log(id);
     fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(newSchoolLog),
+      method: "DELETE",
       headers: {
         "content-type": "application/json",
       },
     })
-      .then((res) => {
-        if (!res.ok) {
-          return res.json().then((error) => Promise.reject(error));
-        }
-      })
       .then(() => {
-        this.context.updateSchoolLog(newSchoolLog);
-        this.props.history.push("/school-logs");
+        this.context.deleteSchoolLog(id);
+        this.props.history.push(`/school-logs`);
       })
       .catch((error) => {
-        console.error(error);
+        console.error({ error });
       });
   };
-  handleClickCancel = () => {
-    this.props.history.push("/");
-  };
-  render() {
-    const {
-      school_date,
-      student,
-      english,
-      math,
-      specialty,
-      notes,
-    } = this.state;
+  handleClickUpdate = (e) => {
+    e.preventDefault();
+    const { id } = this.props.match.params;
 
+    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then(() => {
+        this.context.updateSchoolLog(id);
+        this.props.history.push(`/school-logs/${id}/update`);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
+
+  render() {
+    const { schoolLogs = [] } = this.context;
+    const { id } = this.props.match.params;
+    const schoolLog = findSchoolLog(schoolLogs, id) || {
+      student: `Loading...`,
+    };
     return (
       <div className="addSchoolLog-container">
         <header>
-          <h1>Edit Log</h1>
+          <h1> School Log</h1>
         </header>
         <section>
-          <form id="add-log" onSubmit={this.handleSubmit}>
+          <form id="school-log">
             <div className="form-section">
               <label htmlFor="school_date">Date</label>
               <input
-                type="date"
+                type="text"
                 name="school_date"
                 required
-                value={school_date}
-                onChange={this.handleChangeSchoolDate}
+                defaultValue={schoolLog.school_date}
               />
             </div>
             <div className="form-section">
@@ -144,8 +105,7 @@ export default class UpdateLog extends React.Component {
                 type="text"
                 name="student"
                 required
-                value={student}
-                onChange={this.handleChangeStudent}
+                defaultValue={schoolLog.student}
               />
             </div>
             <div className="form-section">
@@ -154,8 +114,7 @@ export default class UpdateLog extends React.Component {
                 name="english"
                 rows="5"
                 required
-                value={english}
-                onChange={this.handleChangeEnglish}
+                defaultValue={schoolLog.english}
               ></textarea>
             </div>
             <div className="form-section">
@@ -164,17 +123,12 @@ export default class UpdateLog extends React.Component {
                 name="math"
                 rows="5"
                 required
-                value={math}
-                onChange={this.handleChangeMath}
+                defaultValue={schoolLog.math}
               ></textarea>
             </div>
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>
-              <select
-                required
-                value={specialty}
-                onChange={this.handleChangeSpecialty}
-              >
+              <select required defaultValue={schoolLog.specialty}>
                 <option defaultValue value="Science">
                   Science
                 </option>
@@ -190,20 +144,23 @@ export default class UpdateLog extends React.Component {
                 name="notes"
                 rows="5"
                 required
-                value={notes}
-                onChange={this.handleChangeNotes}
+                defaultValue={schoolLog.notes}
               ></textarea>
             </div>
             <div className="form-section">
-              <button type="submit" className="submit-button">
-                Submit
+              <button
+                onClick={this.handleClickUpdate}
+                className="edit-button"
+                type="button"
+              >
+                Edit
               </button>
               <button
+                onClick={this.handleClickDelete}
+                className="delete-button"
                 type="button"
-                onClick={this.handleClickCancel}
-                className="cancel-button"
               >
-                Cancel
+                delete
               </button>
             </div>
           </form>

@@ -1,19 +1,22 @@
 import React from "react";
-import "./LogEntry.css";
-import { findSchoolLog } from "../../school-helpers";
+import "./UpdateLog.css";
 import ApiContext from "../../ApiContext";
 import config from "../../config";
 
-export default class LogEntry extends React.Component {
+export default class UpdateLog extends React.Component {
   state = {
-    schoolLogs: [],
+    id: "",
+    school_date: "",
+    student: "",
+    english: "",
+    math: "",
+    specialty: "",
+    notes: "",
   };
 
   static defaultProps = {
     match: {
       params: {},
-      onDeleteSchoolLog: () => {},
-      onUpdateSchoolLog: () => {},
     },
   };
 
@@ -28,74 +31,112 @@ export default class LogEntry extends React.Component {
       },
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then((responseData) => {
         if (!this.state.schoolLog) {
-          this.setState({ schoolLog: data });
+          this.setState({
+            id: responseData.id,
+            school_date: responseData.school_date,
+            student: responseData.student,
+            english: responseData.english,
+            math: responseData.math,
+            specialty: responseData.specialty,
+            notes: responseData.notes,
+          });
         }
       })
       .catch((error) => {
         console.error({ error });
       });
   }
-  handleClickDelete = (e) => {
-    e.preventDefault();
-
-    const { id } = this.props.match.params;
-
-    console.log(id);
-    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then(() => {
-        this.context.deleteSchoolLog(id);
-        this.props.history.push(`/school-logs`);
-      })
-      .catch((error) => {
-        console.error({ error });
-      });
+/** take new data from the form and update the LogEntry */
+  handleChangeSchoolDate = (e) => {
+    this.setState({ school_date: e.target.value });
   };
-  handleClickUpdate = (e) => {
-    e.preventDefault();
-    const { id } = this.props.match.params;
-
-    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then(() => {
-        this.context.updateSchoolLog(id);
-        this.props.history.push(`/school-logs/${id}/update`);
-      })
-      .catch((error) => {
-        console.error({ error });
-      });
+  handleChangeStudent = (e) => {
+    this.setState({ student: e.target.value });
+  };
+  handleChangeEnglish = (e) => {
+    this.setState({ english: e.target.value });
+  };
+  handleChangeMath = (e) => {
+    this.setState({ math: e.target.value });
+  };
+  handleChangeSpecialty = (e) => {
+    this.setState({ specialty: e.target.value });
+  };
+  handleChangeNotes = (e) => {
+    this.setState({ notes: e.target.value });
   };
 
-  render() {
-    const { schoolLogs = [] } = this.context;
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { id } = this.props.match.params;
-    const schoolLog = findSchoolLog(schoolLogs, id) || {
-      student: `Loading...`,
+    const {
+      school_date,
+      student,
+      english,
+      math,
+      specialty,
+      notes,
+    } = this.state;
+    const newSchoolLog = {
+      id,
+      school_date,
+      student,
+      english,
+      math,
+      specialty,
+      notes,
     };
+    /**PATCH method will update the schoolLog  */
+    fetch(`${config.API_ENDPOINT}/school-logs/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(newSchoolLog),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((error) => Promise.reject(error));
+        }
+      })
+      .then(() => {
+        this.context.updateSchoolLog(newSchoolLog);
+        this.props.history.push("/school-logs");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  handleClickCancel = () => {
+    this.props.history.push("/");
+  };
+  render() {
+    const {
+      school_date,
+      student,
+      english,
+      math,
+      specialty,
+      notes,
+    } = this.state;
+
     return (
       <div className="addSchoolLog-container">
         <header>
-          <h1> School Log</h1>
+          <h1>Edit Log</h1>
         </header>
         <section>
-          <form id="school-log">
+          <form id="add-log" onSubmit={this.handleSubmit}>
             <div className="form-section">
               <label htmlFor="school_date">Date</label>
               <input
-                type="text"
+                type="date"
                 name="school_date"
                 required
-                defaultValue={schoolLog.school_date}
+                value={school_date}
+                onChange={this.handleChangeSchoolDate}
               />
             </div>
             <div className="form-section">
@@ -104,7 +145,8 @@ export default class LogEntry extends React.Component {
                 type="text"
                 name="student"
                 required
-                defaultValue={schoolLog.student}
+                value={student}
+                onChange={this.handleChangeStudent}
               />
             </div>
             <div className="form-section">
@@ -113,7 +155,8 @@ export default class LogEntry extends React.Component {
                 name="english"
                 rows="5"
                 required
-                defaultValue={schoolLog.english}
+                value={english}
+                onChange={this.handleChangeEnglish}
               ></textarea>
             </div>
             <div className="form-section">
@@ -122,12 +165,17 @@ export default class LogEntry extends React.Component {
                 name="math"
                 rows="5"
                 required
-                defaultValue={schoolLog.math}
+                value={math}
+                onChange={this.handleChangeMath}
               ></textarea>
             </div>
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>
-              <select required defaultValue={schoolLog.specialty}>
+              <select
+                required
+                value={specialty}
+                onChange={this.handleChangeSpecialty}
+              >
                 <option defaultValue value="Science">
                   Science
                 </option>
@@ -143,23 +191,20 @@ export default class LogEntry extends React.Component {
                 name="notes"
                 rows="5"
                 required
-                defaultValue={schoolLog.notes}
+                value={notes}
+                onChange={this.handleChangeNotes}
               ></textarea>
             </div>
             <div className="form-section">
-              <button
-                onClick={this.handleClickUpdate}
-                className="edit-button"
-                type="button"
-              >
-                Edit
+              <button type="submit" className="submit-button">
+                Submit
               </button>
               <button
-                onClick={this.handleClickDelete}
-                className="delete-button"
                 type="button"
+                onClick={this.handleClickCancel}
+                className="cancel-button"
               >
-                delete
+                Cancel
               </button>
             </div>
           </form>

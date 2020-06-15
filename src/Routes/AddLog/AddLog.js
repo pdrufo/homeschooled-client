@@ -12,6 +12,7 @@ export default class AddLog extends React.Component {
 
   static contextType = ApiContext;
 
+  /**get the values a user puts into the form and post the new schoolLog to the api */
   handleSubmit = (e) => {
     e.preventDefault();
     const newSchoolLog = {

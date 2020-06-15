@@ -3,11 +3,11 @@ import { Route } from "react-router-dom";
 import "./App.css";
 import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
-import LandingPage from "../LandingPage/LandingPage";
-import SchoolLogs from "../SchoolLogs/SchoolLogs";
-import UpdateLog from "../UpdateLog/UpdateLog";
-import LogEntry from "../LogEntry/LogEntry";
-import AddLog from "../AddLog/AddLog";
+import LandingPage from "../../Routes/LandingPage/LandingPage";
+import SchoolLogs from "../../Routes/SchoolLogs/SchoolLogs";
+import UpdateLog from "../../Routes/UpdateLog/UpdateLog";
+import LogEntry from "../../Routes/LogEntry/LogEntry";
+import AddLog from "../../Routes/AddLog/AddLog";
 import config from "../../config";
 import ApiContext from "../../ApiContext";
 

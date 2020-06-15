@@ -19,6 +19,7 @@ export default class LogEntryTable extends React.Component {
     this.props.history.push(`/school-logs/${id}`);
   };
   render() {
+    /**populate the table with data from the server */
     const schoolLogTable = this.context.schoolLogs.map((schoolLog, id) => (
       <tr key={id}>
         <td>{schoolLog.school_date}</td>
