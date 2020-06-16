@@ -10,13 +10,12 @@
   padding: 10px;
   color: white;
   font-family: "Raleway", sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
 }
 
 .hero h1 {
-  margin-top: 60px;
-  font-size: 35px;
+  font-size: 30px;
   color: white;
   font-family: "Shadows Into Light Two", cursive;
 }
@@ -49,7 +48,6 @@
   }
 
   .hero h1 {
-    margin-top: 80px;
     font-size: 38px;
     color: white;
   }
@@ -57,13 +55,15 @@
   .hero img {
     width: 33%;
   }
+  .hero p {
+    padding: 15px;
+    font-size: 14px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-
   .hero {
     padding: 40px;
-    font-size: 24px;
     font-weight: bold;
   }
 
@@ -72,6 +72,9 @@
     color: white;
   }
 
+  .hero p {
+    font-size: 24px;
+  }
   .hero img {
     margin-top: 60px;
     width: 20%;
@@ -92,13 +95,12 @@
 }
 
 @media only screen and (min-width: 1200px) {
-
   .hero {
-    height: 77vh;
+    padding: 20px;
+    height: 75vh;
   }
 
   .hero h1 {
-    padding: 10px;
     font-size: 50px;
   }
 
@@ -111,12 +113,13 @@
   .hero p {
     width: 50%;
     margin: 0 auto;
+    font-size: 20px;
   }
 
   .school-button {
     padding: 50px;
   }
-  
+
   .landing-button {
     padding: 0.8em 1.2em;
     border-radius: 2em;
