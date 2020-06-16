@@ -1,4 +1,4 @@
-# Home School'd
+# HomeSchool'd
 
 Our schools have closed for the rest of the year due to the
 coronavirus pandemic. As a parent, we are thrust into a new role as
