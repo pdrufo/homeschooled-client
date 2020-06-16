@@ -7,7 +7,7 @@ export default function LandingPage() {
     <div className="container">
       <main>
         <section className="hero">
-          <h1 className="logo">Home School'd</h1>
+          <h1 className="landing-logo">HomeSchool'd</h1>
           <p>
             Our schools have closed for the rest of the year due to the
             coronavirus pandemic. As a parent, we are thrust into a new role as
