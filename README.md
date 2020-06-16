@@ -7,7 +7,7 @@ help organize our kids/students daily required activities so we can
 make sure they are meeting their school goals.
 
 ## Live Version
-https://community-cookbook-client.pdrufo.now.sh/
+https://homeschooled-client.pdrufo.now.sh/
 
 ## Backend
 https://github.com/pdrufo/homeschooled-server
