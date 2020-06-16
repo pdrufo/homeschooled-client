@@ -24,5 +24,5 @@ Mobile
 Tablet
 ![Tablet](https://github.com/pdrufo/homeschooled-client/blob/master/src/Images/ipad.png) 
 
-Desktop
+Desktop/Laptop
 ![Desktop](https://github.com/pdrufo/homeschooled-client/blob/master/src/Images/desktop.png) 
