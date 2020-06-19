@@ -41,7 +41,7 @@ export default class LogEntryTable extends React.Component {
     ));
     return (
       <div className="log-entry">
-        <table id="schoolLogs">
+        <table id="schoolLogs" className="schooLogs-table">
           <tbody>
             <tr>
               <th>Date</th>

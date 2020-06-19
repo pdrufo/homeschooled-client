@@ -80,9 +80,7 @@ export default class LogEntry extends React.Component {
   render() {
     const { schoolLogs = [] } = this.context;
     const { id } = this.props.match.params;
-    const schoolLog = findSchoolLog(schoolLogs, id) || {
-      student: `Loading...`,
-    };
+    const schoolLog = findSchoolLog(schoolLogs, id);
     return (
       <div className="addSchoolLog-container">
         <header>
@@ -96,7 +94,7 @@ export default class LogEntry extends React.Component {
                 type="text"
                 name="school_date"
                 required
-                defaultValue={schoolLog.school_date}
+                defaultValue={schoolLog ? schoolLog.school_date : ""}
               />
             </div>
             <div className="form-section">
@@ -105,7 +103,7 @@ export default class LogEntry extends React.Component {
                 type="text"
                 name="student"
                 required
-                defaultValue={schoolLog.student}
+                defaultValue={schoolLog ? schoolLog.student : ""}
               />
             </div>
             <div className="form-section">
@@ -114,7 +112,7 @@ export default class LogEntry extends React.Component {
                 name="english"
                 rows="5"
                 required
-                defaultValue={schoolLog.english}
+                defaultValue={schoolLog ? schoolLog.english : ""}
               ></textarea>
             </div>
             <div className="form-section">
@@ -123,12 +121,15 @@ export default class LogEntry extends React.Component {
                 name="math"
                 rows="5"
                 required
-                defaultValue={schoolLog.math}
+                defaultValue={schoolLog ? schoolLog.math : ""}
               ></textarea>
             </div>
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>
-              <select required defaultValue={schoolLog.specialty}>
+              <select
+                required
+                defaultValue={schoolLog ? schoolLog.specialty : ""}
+              >
                 <option defaultValue value="Science">
                   Science
                 </option>
@@ -144,7 +145,7 @@ export default class LogEntry extends React.Component {
                 name="notes"
                 rows="5"
                 required
-                defaultValue={schoolLog.notes}
+                defaultValue={schoolLog ? schoolLog.notes : ""}
               ></textarea>
             </div>
             <div className="form-section">

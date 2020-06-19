@@ -20,6 +20,9 @@ th {
   padding: 6px;
   border: 1px solid #ccc;
   text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .details-button {
@@ -29,7 +32,6 @@ th {
   margin: auto;
   padding: 5px;
   font-size: 11px;
-  
 }
 @media only screen and (max-width: 760px),
   (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -43,12 +45,12 @@ th {
     display: block;
   }
   .details-button {
-	background-color: #970569;
-	color: white;
-	display: block;
-	margin: 0;
-	padding: 8px;
-  	font-size: 14px;
+    background-color: #970569;
+    color: white;
+    display: block;
+    margin: 0;
+    padding: 8px;
+    font-size: 14px;
   }
   /* Hide table headers (but not display: none;, for accessibility) */
   thead tr {
