@@ -48,7 +48,7 @@ export default class UpdateLog extends React.Component {
         console.error({ error });
       });
   }
-/** take new data from the form and update the LogEntry */
+  /** take new data from the form and update the LogEntry */
   handleChangeSchoolDate = (e) => {
     this.setState({ school_date: e.target.value });
   };
@@ -132,6 +132,7 @@ export default class UpdateLog extends React.Component {
             <div className="form-section">
               <label htmlFor="school_date">Date</label>
               <input
+                aria-label="input for label"
                 type="date"
                 name="school_date"
                 required
@@ -142,6 +143,7 @@ export default class UpdateLog extends React.Component {
             <div className="form-section">
               <label htmlFor="student">Student Name</label>
               <input
+                aria-label="input for label"
                 type="text"
                 name="student"
                 required
@@ -152,6 +154,7 @@ export default class UpdateLog extends React.Component {
             <div className="form-section">
               <label htmlFor="english">English</label>
               <textarea
+                aria-label="input for label"
                 name="english"
                 rows="5"
                 required
@@ -162,6 +165,7 @@ export default class UpdateLog extends React.Component {
             <div className="form-section">
               <label htmlFor="math">Math</label>
               <textarea
+                aria-label="input for label"
                 name="math"
                 rows="5"
                 required
@@ -173,6 +177,7 @@ export default class UpdateLog extends React.Component {
               <label htmlFor="specialty">Specialty</label>
               <select
                 required
+                aria-label="input for label"
                 value={specialty}
                 onChange={this.handleChangeSpecialty}
               >
@@ -188,6 +193,7 @@ export default class UpdateLog extends React.Component {
             <div className="form-section">
               <label htmlFor="notes">Notes</label>
               <textarea
+                aria-label="input for label"
                 name="notes"
                 rows="5"
                 required

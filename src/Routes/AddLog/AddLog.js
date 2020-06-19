@@ -78,18 +78,18 @@ export default class AddLog extends React.Component {
             <div className="form-section">
               <label htmlFor="student">Student Name</label>
               <input
+                aria-label="input for label"
                 type="text"
                 name="student"
-                aria-label="input for label"
                 required
               />
             </div>
             <div className="form-section">
               <label htmlFor="english">English</label>
               <textarea
+                aria-label="input for label"
                 name="english"
                 rows="5"
-                aria-label="input for label"
                 required
               ></textarea>
             </div>
@@ -104,8 +104,13 @@ export default class AddLog extends React.Component {
             </div>
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>
-              
-              <select name="specialty" className="custom-select" required>
+
+              <select
+                name="specialty"
+                className="custom-select"
+                aria-label="input for label"
+                required
+              >
                 <option defaultValue value="Science">
                   Science
                 </option>
@@ -114,7 +119,6 @@ export default class AddLog extends React.Component {
                 <option value="Music">Music</option>
                 <option value="Gym">Gym</option>
               </select>
-              
             </div>
             <div className="form-section">
               <label htmlFor="notes">Notes</label>

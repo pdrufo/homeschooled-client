@@ -22,7 +22,7 @@ th {
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .details-button {
@@ -68,7 +68,8 @@ th {
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
-    padding-left: 50%;
+	padding-left: 50%;
+	white-space: nowrap;
   }
 
   td:before {

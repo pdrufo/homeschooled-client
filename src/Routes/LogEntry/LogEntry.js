@@ -91,6 +91,7 @@ export default class LogEntry extends React.Component {
             <div className="form-section">
               <label htmlFor="school_date">Date</label>
               <input
+                aria-label="input for label"
                 type="text"
                 name="school_date"
                 required
@@ -100,6 +101,7 @@ export default class LogEntry extends React.Component {
             <div className="form-section">
               <label htmlFor="student">Student Name</label>
               <input
+                aria-label="input for label"
                 type="text"
                 name="student"
                 required
@@ -109,6 +111,7 @@ export default class LogEntry extends React.Component {
             <div className="form-section">
               <label htmlFor="english">English</label>
               <textarea
+                aria-label="input for label"
                 name="english"
                 rows="5"
                 required
@@ -118,6 +121,7 @@ export default class LogEntry extends React.Component {
             <div className="form-section">
               <label htmlFor="math">Math</label>
               <textarea
+                aria-label="input for label"
                 name="math"
                 rows="5"
                 required
@@ -127,6 +131,7 @@ export default class LogEntry extends React.Component {
             <div className="form-section">
               <label htmlFor="specialty">Specialty</label>
               <select
+                aria-label="input for label"
                 required
                 defaultValue={schoolLog ? schoolLog.specialty : ""}
               >
@@ -142,6 +147,7 @@ export default class LogEntry extends React.Component {
             <div className="form-section">
               <label htmlFor="notes">Notes</label>
               <textarea
+                aria-label="input for label"
                 name="notes"
                 rows="5"
                 required
